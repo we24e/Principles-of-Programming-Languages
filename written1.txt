@@ -1,0 +1,97 @@
+1.(a) 
+fun c l-> 
+ match l with 
+|[]->[] 
+| (h::t)-> 
+ if c=h+5 then [true]
+ else [false]
+
+
+
+(b)
+
+fun x g-> g(x)
+
+
+
+-------------------------------------
+let rec fold_left f a l = 
+ match l with
+| [] -> a
+| h::t -> fold_left f (f a h) t
+
+
+
+fold_left f ([] , 0) [ 5 ; 4 ; 3 ; 2 ; 1 ]
+---------------------------------------
+
+(c)
+
+let f (l, i) x = let res = (x::l, i+x) in res
+
+
+
+2. 
+let sumtailrec tr=
+ let rec aux acc ts_lst=
+  match ts_lst with
+  | []-> acc
+  | (h::t)->
+    match h with 
+      | Leaf-> aux acc t
+      | Node(l,n,r)->
+        let new_acc = n+acc in
+          let new_t=[l]@[r] in 
+           aux new_acc (t@new_t)
+   in aux 0 [tr]
+;;
+
+
+ --------------------------
+type tree =
+| Leaf
+| Node of tree * int * tree
+
+
+let tree = (Node (Node(Leaf,2,Leaf),1,Node(Leaf,3,Leaf))) in
+assert (sumtail tree = sum_tree tree)
+let tree = (Node (Node(Node(Leaf, 4, Leaf),2,Leaf),1,Node(Node(Leaf, 9, Leaf),3,Leaf))) in
+sumtailrec tree
+-----------------------------
+
+
+3. (a)True    (b)True
+
+4. 
+(λx.x(λx.y x))(λz.z)
+= (λz.z)(λx.y x)
+= λx.y x
+
+
+------------
+λx.λy.y x 
+λf.λn.n f 
+λy.y x
+
+(λx.x(λx.y x))(λz.z)
+
+(λx.(λy.(x y)))y
+a
+let func x = (fun y-> y x) a b 
+
+-------------
+
+
+5. 
+(λx.λy.x y z)(λc.c)((λa.a)b)
+= (λx.λy.x y z)(λc.c)b
+= (λx.λy.x y z)b
+= (λx.λy.(x y) z)b
+= (λx.x z)b
+= b z
+
+6. (λx.(λy.(x y)))y
+= (λx.(λz.(x z)))y  (alpha-convert)
+= λz.y z
+
+7. B

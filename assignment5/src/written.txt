@@ -1,0 +1,36 @@
+1. 
+(a) T
+(b) T
+(c) F
+(d) T
+
+2.
+(a) C
+(b) C
+(c) B
+
+#consult("/Users/we24e/cs314/t.pl").
+#consult("/Users/we24e/cs314/t.pl").
+path_N(new_york, B, 3). 
+
+3. 
+prefix(X, Z) :- append(X, Y, Z).
+suffix(Y, Z) :- append(X, Y, Z). 
+segment([], []).
+segment(S, Lst) :- prefix(S, R), suffix(R, Lst). 
+
+4. 
+(a) path_2(X, Y) :- link(X, Z), link(Z, Y). 
+
+(b) path_N(X,Y,1):- link(X,Y). 
+    path_N(X,Y,N):- N>1, R is N-1, path_N(X,Z,R), link(Z,Y).
+
+5. 
+def transpose(m):
+    height=len(m)
+    width=len(m[0])
+    return( [[(m[h][w]) for h in range(height)] for w in range(width)])
+
+6. A -> B -> C -> E -> D -> F -> G -> I -> H -> [Object]
+
+
